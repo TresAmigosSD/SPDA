@@ -1,0 +1,5 @@
+# application name
+smv.appName = SPDA
+
+# stage definitions
+smv.stages = org.tresamigos.spda.hlth.etl, org.tresamigos.spda.hlth.hsptl
