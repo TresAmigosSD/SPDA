@@ -44,6 +44,3 @@ Research on the ID of hospitals in CMS data:
 
 **4. Next Step**
 - explore the link between CCN and NPI (or PAC ID)
-
-Category	Description
-General Information	Hospital address, type and availability structural measures 
