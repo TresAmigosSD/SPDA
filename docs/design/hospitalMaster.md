@@ -43,7 +43,7 @@ Research on the ID of hospitals in CMS data:
   address matching.
 
 **4. Next Step**
-- explore the link between CCN and NPI (or PAC ID)
+- explore the link between CCN and NPI (or PAC ID) [on hold]
 
 ## Hospital Compare data
 
