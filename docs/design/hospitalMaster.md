@@ -47,7 +47,7 @@ Research on the ID of hospitals in CMS data:
 
 ## Hospital Compare data
 
-**1. Overview
+**1. Overview**
 The hospital compare data includes about 30 hospital level tables. It provides information on the quality of care hospitals are providing to their patients. It covers 4,000+ Medicare-certificated hospitals in US. Specific measures on heart attack, heart failure, pneumonia, surgery, and other conditions are available in most of related tables. The information are in different dimensions: cost,  timely care, quality measure provided by HVBP, negatives (readmission, deaths, complications, affections), survey of patients' experience and outpatient volumes.
 
 - General information: Hospital address, type and availability structural measures
@@ -59,12 +59,12 @@ The hospital compare data includes about 30 hospital level tables. It provides i
 - Use of Medical Imaging: Outpatient volume by category; hospitals' use of medical imaging tests for outpatients
 - Linking Quality to Payments: HVBP participated hospital scores in different areas: AMI, HAI, HCAHPS, HF, PN, SCIP, readmission and total scores
 
-**2. Relationship between tables
+**2. Relationship between tables**
 
 - Tables in different dimensions are independent, with CCN as hospital ID
 - In the same dimension, there are usually aggregated tables available in state and national level
 
-**3. Update frequency
+**3. Update frequency**
 
 - Hospital Compare is typically updated, or refreshed, each quarter in April, July, October, and December
 - The refresh schedule is subject to change and not all measures will update during each quarterly release
