@@ -44,3 +44,34 @@ Research on the ID of hospitals in CMS data:
 
 **4. Next Step**
 - explore the link between CCN and NPI (or PAC ID)
+
+## Hospital Compare data
+
+**1. Overview
+The hospital compare data includes about 30 hospital level tables. It provides information on the quality of care hospitals are providing to their patients. It covers 4,000+ Medicare-certificated hospitals in US. Specific measures on heart attack, heart failure, pneumonia, surgery, and other conditions are available in most of related tables. The information are in different dimensions: cost,  timely care, quality measure provided by HVBP, negatives (readmission, deaths, complications, affections), survey of patients' experience and outpatient volumes.
+
+- General information: Hospital address, type and availability structural measures
+- Survey of patients’ experiences: Histogram of survey results by hospital, category and answer, as well as a score by hospital and category
+- Timely and effective care: Hospital level score under 50 measures under 10 conditions; PCH quarterly measurement data
+- Complications: Hospital level score by different measures of complication from AHRQ and HAI from CDC / NHSN
+- Readmissions and deaths: Hospital level readmission and death rate of AMI, CABG, COPD, HF, PN, stroke and hip/knee surgery
+- Payment and value of care: MSPB spending breakdown by clain type and period (prior to / during admission and after discharge) and MSPB_1 score; Average payment measured by AMI, HF and PN
+- Use of Medical Imaging: Outpatient volume by category; hospitals' use of medical imaging tests for outpatients
+- Linking Quality to Payments: HVBP participated hospital scores in different areas: AMI, HAI, HCAHPS, HF, PN, SCIP, readmission and total scores
+
+**2. Relationship between tables
+
+- Tables in different dimensions are independent, with CCN as hospital ID
+- In the same dimension, there are usually aggregated tables available in state and national level
+
+**3. Update frequency
+
+- Hospital Compare is typically updated, or refreshed, each quarter in April, July, October, and December
+- The refresh schedule is subject to change and not all measures will update during each quarterly release
+- The latest version of these 30 tables are refreshed / updated on 12/10/2015, 10/8/2015 or 7/16/2015
+- The time window of the measures varies and is available in each table
+
+
+
+ 
+
