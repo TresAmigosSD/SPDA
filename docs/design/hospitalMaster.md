@@ -1,8 +1,8 @@
 # Create Hospital Master Table Based on Public Data
 
 ## Background
-The original goal was to create our own "hospital master" data from different public data sources. 
-However since CMS made good progress on the hospital compare data, there is a very good chance 
+The original goal was to create our own "hospital master" data from different public data sources.
+However since CMS made good progress on the hospital compare data, there is a very good chance
 that the hospital compare data themselves can be the master.
 
 ## Research Findings
@@ -31,7 +31,7 @@ Research on the ID of hospitals in CMS data:
   number for covered health care providers (doctors, dentists, chiropractors, nurses and other medical staff). The NPI is a 10-digit, intelligence-free numeric identifier. This means that the numbers do not carry other information about healthcare providers, such as the state in which they live or their medical specialty. The NPI must be used in lieu of legacy provider identifiers in the HIPAA standards transactions. Covered health care providers and all health plans and health care clearing houses must use the NPIs in the administrative and financial transactions adopted under HIPAA (Health Insurance Portability and Accountability Act).
 
 - Physician compare data use NPI as the key to each physician. In the data,
-  another key (PAC ID) is used to identify a physician and the associated group practice. It is the link between physician and hospitals. 
+  another key (PAC ID) is used to identify a physician and the associated group practice. It is the link between physician and hospitals.
 
 **3. Summary**
 
@@ -41,9 +41,6 @@ Research on the ID of hospitals in CMS data:
   etc.).
 - We have to link CCN to NPI (or PAC ID) by figuring out the linking data or
   address matching.
-
-**4. Next Step**
-- explore the link between CCN and NPI (or PAC ID) [on hold]
 
 ## Hospital Compare data
 
@@ -71,8 +68,3 @@ The hospital compare data includes about 30 hospital level tables. It provides i
 - The refresh schedule is subject to change and not all measures will update during each quarterly release
 - The latest version of these 30 tables are refreshed / updated on 12/10/2015, 10/8/2015 or 7/16/2015
 - The time window of the measures varies and is available in each table
-
-
-
- 
-

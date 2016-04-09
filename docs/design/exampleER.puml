@@ -1,0 +1,66 @@
+@startuml
+!define table(x) class x << (T,#FFAAAA) >>
+!define factT(x) class x << (F,#DC504F) fact >>
+!define dimT(x) class x << (D,#3E93B5) dim >>
+!define primary_key(x) <u><font size="14" color="blue">x</font></u>
+!define foreign_key(x) <font size="12" color="Green">x</font>
+!define link(t1,c1,t2,c2) t1 c1 -- c2 t2
+!define linkTo(t1,c1,t2) t1 c1 --> t2
+!define multi_columns(x) <font size="12" color="Red">x</font>
+
+hide methods
+hide stereotypes
+
+skinparam class {
+  BackgroundColor<<fact>> #FFF9F9
+  BackgroundColor<<dim>> #EFF5F8
+  BackgroundColor<<softDim>> #CDCDCD
+  BorderColor<<fact>> #DC504F
+  BorderColor<<dim>> #3E93B5
+  ArrowColor #1078A1
+}
+
+'This is an example ER diagram
+
+'With Atom + the following 2 plugins, one should be able to edit and plot ER diagram easily
+' * language-plantuml - Use plantUML for class diagrams and table ER diagrams? This is the highlighter
+' * plantuml-viewer - Preview plantUML plots (need Graphviz, dot command, on system)'
+
+package "Claims" as PxClm <<Rect>>{
+  factT(table1) {
+      primary_key(claim_id: String)
+      primary_key(srvc_line_seq: Long)
+      completion_flag: String
+      foreign_key(patient_id: String)
+  }
+
+  factT(table2) {
+      foreign_key(claim_id:String)
+      completion_flag:String
+      foreign_key(diag_cde:String)
+  }
+
+  factT(table3) {
+      foreign_key(claim_id: String)
+      foreign_key(srvc_line_seq: Long)
+      somevar: Double
+  }
+}
+
+package "Patient Plan State" as PatPlan <<Rect>>{
+  dimT(table4) {
+      primary_key(patient_id: String)
+      patient_hipaa_birth_year: Integer
+  }
+}
+
+dimT(table5) {
+    primary_key(location_code: Integer)
+    location_desc: String
+}
+
+linkTo(table1,"location_code",table5)
+linkTo(table1,"patient_id",table4)
+
+
+@enduml
