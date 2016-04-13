@@ -1,0 +1,292 @@
+@startuml
+!define table(x) class x << (T,#FFAAAA) >>
+!define factT(x) class x << (F,#DC504F) fact >>
+!define dimT(x) class x << (D,#3E93B5) dim >>
+!define primary_key(x) <u><font size="14" color="blue">x</font></u>
+!define foreign_key(x) <font size="12" color="Green">x</font>
+!define link(t1,c1,t2,c2) t1 c1 -- c2 t2
+!define linkTo(t1,c1,t2) t1 c1 --> t2
+!define multi_columns(x) <font size="12" color="Red">x</font>
+
+hide methods
+hide stereotypes
+
+skinparam class {
+  BackgroundColor<<fact>> #FFF9F9
+  BackgroundColor<<dim>> #EFF5F8
+  BackgroundColor<<softDim>> #CDCDCD
+  BorderColor<<fact>> #DC504F
+  BorderColor<<dim>> #3E93B5
+  ArrowColor #1078A1
+}
+
+' ER diagram of hospital compare data
+' Created: 2016-04-12'
+
+package "Hospital General" as HosGnrl <<Rect>> {
+  factT(hospital_genral_information) {
+    primary_key(Provider_ID: String)
+    Hospital_Name: String
+    Address: String
+    City: String
+    State: String
+    ZIP_CODE: String
+    County_Name: String
+    Phone_Number: String
+    Hospital_Type: String
+    Hospital_Ownership: String
+    Emergency_Services: String
+  }
+  factT(Structural_Measures_Hospital) {
+     foreign_key(Provider_ID: String)
+     primary_key(Measure_ID: String)
+     Measure_Name: String
+     Measure_Response: String
+     Measure_Start_Date: String
+     Measure_End_Date: String
+     Footnote: String
+  }
+}
+
+Package "HCAHPS Survey" as Survey <<Rect>> {
+  factT(HCAHPS_Hospital) {
+    primary_key(Provider_ID: String)
+    primary_key(HCAHPS_Measure_ID: String)
+    HCAHPS_Question: String
+    HCAHPS_Answer_Description: String
+    Patient_Survey_Star_Rating: String
+    Patient_Survey_Star_Rating_Footnote: String
+    HCAHPS_Answer_Percent: String
+    HCAHPS_Answer_Percent_Footnote: String
+    HCAHPS_Linear_Mean_Value: String
+    Number_of_Completed_Surveys: String
+    Number_of_Completed_Surveys_Footnote: String
+    Survey_Response_Rate_Percent: String
+    Survey_Response_Rate_Percent_Footnote: String
+    Measure_Start_Date: String
+    Measure_End_Date: String
+  }
+}
+
+Package "Time and Effective Care" as Eff_Care <<Rect>> {
+  factT(Timely_and_Effective_Care_Hospital) {
+    primary_key(Provider_ID: String)
+    primary_key(Measure_ID: String)
+    Condition: String
+    Measure_Name: String
+    Score: String
+    Sample: String
+    Footnote: String
+    Measure_Start_Date: String
+    Measure_End_Date: String
+  }
+}
+package "Complications" as Comp <<Rect>> {
+  factT(Complications_Hospital) {
+    primary_key(Provider_ID: String)
+    primary_key(Measure_ID: String)
+    Measure_Name: String
+    Compared_to_National: String
+    Denominator: String
+    Score: String
+    Lower_Estimate: String
+    Higher_Estimate: String
+    Footnote: String
+    Measure_Start_Date: String
+    Measure_End_Date: String
+  }
+
+  factT(Healthcare_Associated_Infections_Hospital) {
+    primary_key(Provider_ID: String)
+    primary_key(Measure_ID: String)
+    Measure_Name: String
+    Compared_to_National: String
+    Score: String
+    Footnote: String
+    Measure_Start_Date: String
+    Measure_End_Date: String
+  }
+}
+
+Package "Readmission and Death" as "Readmsn_Death" <<Rect>> {
+  factT(Readmissions_and_Deaths_Hospital) {
+    primary_key(Provider_ID: String)
+    primary_key(Measure_ID: String)
+    Measure_Name: String
+    Compared_to_National: String
+    Denominator: String
+    Score: String
+    Lower_Estimate: String
+    Higher_Estimate: String
+    Footnote: String
+    Measure_Start_Date: String
+    Measure_End_Date: String
+  }
+}
+
+package "Use of Medical Imaging" as "Med_Imaging" <<Rect>>  {
+  factT(Outpatient_Imaging_Efficiency_Hospital) {
+    primary_key(Provider_ID: String)
+    primary_key(Measure_ID: String)
+    Measure_Name: String
+    Score: String
+    Footnote: String
+    Measure_Start_Date: String
+    Measure_End_Date: String
+  }
+}
+
+package "Payment and Value of Care" as "Cost" <<Rect>> {
+  factT(Payment_and_Value_of_Care_Hospital) {
+    primary_key(Provider_ID: String)
+    Payment_measure_name: String
+    primary_key(Payment_measure_ID: String)
+    Payment_category: String
+    Denominator: String
+    Payment: String
+    Lower_estimate: String
+    Higher_estimate: String
+    Footnote: String
+    Value_of_care_display_name: String
+    Value_of_care_display_ID: String
+    Value_of_care_category: String
+    Measure_start_date: String
+    Measure_end_date: String
+  }
+
+  factT(Medicare_Hospital_Spending_per_Patient_Hospital) {
+    primary_key(Provider_ID: String)
+    primary_key(Measure_ID: String)
+    Score: String
+    Footnote: String
+    Measure_Start_Date: String
+    Measure_End_Date: String
+  }
+
+  factT(Medicare_Hospital_Spending_by_Claim) {
+    Hospital_Name: String
+    primary_key(Provider_Number: String)
+    State: String
+    primary_key(Period: String)
+    primary_key(Claim_Type: String)
+    Avg_Spending_Per_Episode_Hospital: String
+    Avg_Spending_Per_Episode_State: String
+    Avg_Spending_Per_Episode_Nation: String
+    Percent_of_Spending_Hospital: String
+    Percent_of_Spending_State: String
+    Percent_of_Spending_Nation: String
+    Measure_Start_Date: String
+    Measure_End_Date: String
+  }
+}
+
+package "Patient Volume" as "Pat_Vol" <<Rect>> {
+  factT(Outpatient_Procedures_Volume) {
+    primary_key(Provider_ID: String)
+    Hospital_Name: String
+    Measure_ID: String
+    Gastrointestinal: String
+    Eye: String
+    Nervous_System: String
+    Musculoskeletal: String
+    Skin: String
+    Genitourinary: String
+    Cardiovascular: String
+    Start_Date: String
+    End_Date: String
+  }
+
+  factT(HOSPITAL_QUARTERLY_QUALITYMEASURE_IPFQR_HOSPITAL) {
+    primary_key(Provider_ID: String)
+    HBIPS_2_Measure_Description: String
+    HBIPS_2_Overall_Rate_Per_1000: String
+    HBIPS_2_Overall_Num: String
+    HBIPS_2_Overall_Den: String
+    HBIPS_2_Overall_Footnote: String
+    HBIPS_2_1_12_Rate_Per_1000: String
+    HBIPS_2_1_12_Num: String
+    HBIPS_2_1_12_Den: String
+    HBIPS_2_1_12_Footnote: String
+    HBIPS_2_13_17_Rate_Per_1000: String
+    HBIPS_2_13_17_Num: String
+    HBIPS_2_13_17_Den: String
+    HBIPS_2_13_17_Footnote: String
+    HBIPS_2_18_64_Rate_Per_1000: String
+    HBIPS_2_18_64_Num: String
+    HBIPS_2_18_64_Den: String
+    HBIPS_2_18_64_Footnote: String
+    HBIPS_2_65_Over_Rate_Per_1000: String
+    HBIPS_2_65_Over_Num: String
+    HBIPS_2_65_Over_Den: String
+    HBIPS_2_65_Over_Footnote: String
+  }
+
+  factT(HOSPITAL_QUARTERLY_QUALITYMEASURE_PCH_HOSPITAL) {
+    primary_key(Provider_ID: String)
+    primary_key(Measure_ID: String)
+    MEASURE_DESCRIPTION: String
+    NUMERATOR: String
+    DENOMINATOR: String
+    FOOTNOTE: String
+    RPTG_PRD_START_DT: String
+    RPTG_PRD_END_DT: String
+  }
+}
+
+package "Linking Quarlity to Payment" as "Quarlity" <<Rect>> {
+  factT(HOSPITAL_QUARTERLY_HAC_DOMAIN_HOSPITAL) {
+    Hospital_Name: String
+    primary_key(Provider_ID: String)
+    State: String
+    Fiscal_Year: String
+    Domain_1_Score: String
+    AHRQ_PSI_90_Score: String
+    Domain_1_Start_Date: String
+    Domain_1_End_Date: String
+    Domain_2_Score: String
+    CLABSI_Score: String
+    CAUTI_Score: String
+    Domain_2_Start_Date: String
+    Domain_2_End_Date: String
+    Total_HAC_Score: String
+    Footnotes: String
+  }
+
+  factT(READMISSION_REDUCTION) {
+    Hospital_Name: String
+    primary_key(Provider_Number: String)
+    State: String
+    Measure_Name: String
+    Number_of_Discharges: String
+    Footnote: String
+    Excess_Readmission_Ratio: String
+    Predicted_Readmission_Rate: String
+    Expected_Readmission_Rate: String
+    Number_of_Readmissions: String
+    Start_Date: String
+    End_Date: String
+  }
+
+  factT(hvbp_ami_08_06_2015) {
+    primary_key(Provider_Number: String)
+    Hospital_Name: String
+    Address: String
+    City: String
+    State: String
+    ZIP_Code: String
+    County_Name: String
+    AMI_7a_Performance_Rate: String
+    AMI_7a_Achievement_Points: String
+    AMI_7a_Improvement_Points: String
+    AMI_7a_Measure_Score: String
+    AMI_8a_Performance_Rate: String
+    AMI_8a_Achievement_Points: String
+    AMI_8a_Improvement_Points: String
+    AMI_8a_Measure_Score: String
+    AMI_Condition_Procedure_Score: String
+  }
+}
+
+linkTo(hospital_genral_information, "Provider_ID",  Structural_Measures_Hospital)
+
+@enduml
