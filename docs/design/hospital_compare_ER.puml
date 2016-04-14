@@ -21,10 +21,10 @@ skinparam class {
 }
 
 ' ER diagram of hospital compare data
-' Created: 2016-04-12'
+' Created: 2016-04-12
 
 package "Hospital General" as HosGnrl <<Rect>> {
-  factT(hospital_genral_information) {
+  factT(Hospital_Genral_Information) {
     primary_key(Provider_ID: String)
     Hospital_Name: String
     Address: String
@@ -38,7 +38,7 @@ package "Hospital General" as HosGnrl <<Rect>> {
     Emergency_Services: String
   }
   factT(Structural_Measures_Hospital) {
-     foreign_key(Provider_ID: String)
+     primary_key(Provider_ID: String)
      primary_key(Measure_ID: String)
      Measure_Name: String
      Measure_Response: String
@@ -81,7 +81,7 @@ Package "Time and Effective Care" as Eff_Care <<Rect>> {
     Measure_End_Date: String
   }
 }
-package "Complications" as Comp <<Rect>> {
+package "Complication, Infection, Readmission and Death" as CIRD <<Rect>> {
   factT(Complications_Hospital) {
     primary_key(Provider_ID: String)
     primary_key(Measure_ID: String)
@@ -106,10 +106,8 @@ package "Complications" as Comp <<Rect>> {
     Measure_Start_Date: String
     Measure_End_Date: String
   }
-}
 
-Package "Readmission and Death" as "Readmsn_Death" <<Rect>> {
-  factT(Readmissions_and_Deaths_Hospital) {
+  factT(Readmissions_and_Deaths_Hospital){
     primary_key(Provider_ID: String)
     primary_key(Measure_ID: String)
     Measure_Name: String
@@ -122,21 +120,10 @@ Package "Readmission and Death" as "Readmsn_Death" <<Rect>> {
     Measure_Start_Date: String
     Measure_End_Date: String
   }
+
 }
 
-package "Use of Medical Imaging" as "Med_Imaging" <<Rect>>  {
-  factT(Outpatient_Imaging_Efficiency_Hospital) {
-    primary_key(Provider_ID: String)
-    primary_key(Measure_ID: String)
-    Measure_Name: String
-    Score: String
-    Footnote: String
-    Measure_Start_Date: String
-    Measure_End_Date: String
-  }
-}
-
-package "Payment and Value of Care" as "Cost" <<Rect>> {
+package "Payment and Value of Care" as Cost <<Rect>> {
   factT(Payment_and_Value_of_Care_Hospital) {
     primary_key(Provider_ID: String)
     Payment_measure_name: String
@@ -180,7 +167,7 @@ package "Payment and Value of Care" as "Cost" <<Rect>> {
   }
 }
 
-package "Patient Volume" as "Pat_Vol" <<Rect>> {
+package "Patient Volume" as Pat_Vol <<Rect>> {
   factT(Outpatient_Procedures_Volume) {
     primary_key(Provider_ID: String)
     Hospital_Name: String
@@ -194,6 +181,16 @@ package "Patient Volume" as "Pat_Vol" <<Rect>> {
     Cardiovascular: String
     Start_Date: String
     End_Date: String
+  }
+
+  factT(Outpatient_Imaging_Efficiency_Hospital) {
+    primary_key(Provider_ID: String)
+    primary_key(Measure_ID: String)
+    Measure_Name: String
+    Score: String
+    Footnote: String
+    Measure_Start_Date: String
+    Measure_End_Date: String
   }
 
   factT(HOSPITAL_QUARTERLY_QUALITYMEASURE_IPFQR_HOSPITAL) {
@@ -233,7 +230,7 @@ package "Patient Volume" as "Pat_Vol" <<Rect>> {
   }
 }
 
-package "Linking Quarlity to Payment" as "Quarlity" <<Rect>> {
+package "Linking Quarlity to Payment" as Quarlity <<Rect>> {
   factT(HOSPITAL_QUARTERLY_HAC_DOMAIN_HOSPITAL) {
     Hospital_Name: String
     primary_key(Provider_ID: String)
@@ -287,6 +284,11 @@ package "Linking Quarlity to Payment" as "Quarlity" <<Rect>> {
   }
 }
 
-linkTo(hospital_genral_information, "Provider_ID",  Structural_Measures_Hospital)
+linkTo(HosGnrl, "Provider_ID",  Survey)
+linkTo(HosGnrl, "Provider_ID", CIRD)
+linkTo(HosGnrl, "Provider_ID", Eff_Care)
+linkTo(HosGnrl, "Provider_ID",  Quarlity)
+linkTo(HosGnrl, "Provider_ID", Cost)
+linkTo(HosGnrl, "Provider_ID", Pat_Vol)
 
 @enduml
